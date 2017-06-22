@@ -40,11 +40,14 @@ function request(params) {
 	});
 }
 
+// It is required to define GoogleApi named credential
+// to connect google api (https://www.googleapis.com/)
 request({
 	method: 'GET',
 	url: 'callout:GoogleApi/oauth2/v3/userinfo'
 }).then(function(res) {
 	console.log(res.statusCode, res.body);
+	document.getElementById('email').innerHTML = res.body.email;
 }).catch(function(err) {
 	console.error(err);
 });
@@ -52,6 +55,7 @@ request({
 	</script>
 </head>
 <body>
+	<span>Google Account Email: <b id="email"></b></span>
 </body>
 </html>
 </apex:page>

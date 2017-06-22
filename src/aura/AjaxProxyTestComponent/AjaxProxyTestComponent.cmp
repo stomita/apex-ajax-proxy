@@ -3,4 +3,6 @@
   controller="AjaxProxyController"
 >
   <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+  <aura:attribute name="email" type="String" default="" />
+  <span>Google Account Email: <b>{!v.email}</b></span>
 </aura:component>
