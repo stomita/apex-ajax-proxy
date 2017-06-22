@@ -1,11 +1,11 @@
-global with sharing class AjaxProxyService {
-	global class AjaxProxyException extends Exception {}
+public with sharing class AjaxProxyService {
+	public class AjaxProxyException extends Exception {}
 
 	static Set<String> METHODS = new Set<String> { 'GET', 'POST', 'PUT', 'DELETE' };
 
 	public AjaxProxyService() {}
 
-	global Map<String, Object> request(Map<String, Object> params) {
+	public Map<String, Object> request(Map<String, Object> params) {
 		Http h = new Http();
 		HttpRequest req = new HttpRequest();
 		String url = (String)params.get('url');
