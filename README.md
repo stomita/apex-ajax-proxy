@@ -8,11 +8,11 @@ An Ajax proxy implementation in Apex, which supports not only usual HTTP callout
 
 This program is an implementation of alternative Ajax proxy written in Apex code. As it is written in Apex any lightning component can use this proxy using `@AuraEnabled` annotation in controller. In visualforce page the `@RemoteAction` annotation enables you to invoke via JavaScript remoting.
 
-It also includes some examples to call out to external API resources.
+It also includes examples of Visualforce page / Lightning Component bundle to use this proxy to call out to external API resources.
 
 ## Setup
 
-If you want to run the examples, you need to create appropriate named credential entry and set its name to `GoogleApi`.
+If you want to run the examples included, you need to create appropriate named credential entry and set its name to `GoogleApi`.
 
 ```
 Name: GoogleApi
