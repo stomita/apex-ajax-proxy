@@ -1,0 +1,57 @@
+<apex:page showHeader="false"
+	sidebar="false"
+	docType="html-5.0"
+	applyHtmlTag="false"
+	applyBodyTag="false"
+	controller="AjaxProxyController"
+>
+<html>
+<head>
+	<script>
+function promisify(fn, scope) {
+	return function() {
+		var args = Array.prototype.slice.apply(arguments);
+		return new Promise(function (resolve, reject) {
+			fn.apply(scope, args.concat([function(result, event) {
+				if (event.status) {
+					resolve(result);
+				} else {
+					reject(new Error(event.message));
+				}
+			}, { escape: false }]));
+		});
+	}
+}
+
+var AjaxProxy = {
+	request: promisify(AjaxProxyController.request, AjaxProxyController)
+};
+
+function request(params) {
+	return AjaxProxy.request(params).then(function(res) {
+		var headers = Object.keys(res.headers || {}).reduce(function(hds, key) {
+			hds[key.toLowerCase()] = res.headers[key];
+			return hds;
+		}, {});
+		if (/^application\/json($|;)/.test(headers['content-type'])) {
+			res.body = JSON.parse(res.body);
+		}
+		return res;
+	});
+}
+
+request({
+	method: 'GET',
+	url: 'callout:GoogleApi/oauth2/v3/userinfo'
+}).then(function(res) {
+	console.log(res.statusCode, res.body);
+}).catch(function(err) {
+	console.error(err);
+});
+
+	</script>
+</head>
+<body>
+</body>
+</html>
+</apex:page>
