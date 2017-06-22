@@ -12,15 +12,16 @@ It also includes examples of Visualforce page / Lightning Component bundle to us
 
 ## Setup
 
-If you want to run the examples included, you need to create appropriate named credential entry and set its name to `GoogleApi`.
+If you want to run the examples included, you need to create appropriate Named Credential entry and set its name to `GoogleApi`.
 
 ```
+Label: Google API
 Name: GoogleApi
 URL: https://www.googleapis.com/
 Identity Type: Named Principal
 Authentication Protocol: OAuth 2.0
-Authentication Provider: Google (<< you need to setup Auth Provider of Google first)
+Authentication Provider: Google (<< you need to register Auth Provider of Google first)
 Scope: openid profile email
 ```
 
-You also need to create Authentication Provider of Google, which authorize access to Google APIs.
+Note that you need to register Authentication Provider of Google, which authorize access to Google APIs , before creating Named Credential entry above.
